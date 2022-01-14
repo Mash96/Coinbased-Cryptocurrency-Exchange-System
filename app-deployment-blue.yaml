@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coinbase-app-server-v2
+  name: coinbase-app-server-blue
 spec:
   replicas: 3
   selector:
@@ -17,6 +17,8 @@ spec:
       labels:
         app: coinbase-app-server
         version: "v2"
+        type: webserver
+        color: blue
     spec:
       containers:
         - name: coinbased-image
@@ -24,21 +26,3 @@ spec:
             us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:v2
           ports:
             - containerPort: 3000
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: coinbase-app-server-green
-  labels:
-    name: coinbase-app-server
-    version: "v2"
-spec:
-  ports:
-    - port: 3000
-      targetPort: 3000
-      protocol: TCP
-  selector:
-    app: coinbase-app-server
-    version: "v2"
-  type: LoadBalancer

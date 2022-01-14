@@ -1,7 +1,15 @@
 steps: 
 # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build','-t','us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:v3','.']
+  args: ['build','-t','us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:v4','.']
   # push container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["push", "us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:v3"]
+  args: ["push", "us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:v4"]
+  # deploy container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernetes-app-deployment-green.yaml
+  - --image=us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:v4
+  - --location=us-east1-b
+  - --cluster=coinbased-exchange-cluster
