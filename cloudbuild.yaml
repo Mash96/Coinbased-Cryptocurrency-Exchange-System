@@ -1,0 +1,5 @@
+steps: 
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build','-t','us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image','.']
+images: 
+- 'us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image'

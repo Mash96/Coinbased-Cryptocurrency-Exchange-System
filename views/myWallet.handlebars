@@ -1,0 +1,18 @@
+<h1 class="text-center mb-3">Coinbased Cryptocurrency Exchnage System</h1>
+<h4>My Wallet</h4>
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Balance</th>
+        </tr>       
+    </thead>
+    <tbody>
+        {{#each wallet}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.balance}}</td>
+        </tr>       
+        {{/each}}
+    </tbody>
+</table>

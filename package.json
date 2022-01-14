@@ -1,0 +1,15 @@
+{
+  "name": "cryptocurrencyexchangedashboard",
+  "version": "1.0.0",
+  "description": "coinbased crypto exchange system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maneesha",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2"
+  }
+}
