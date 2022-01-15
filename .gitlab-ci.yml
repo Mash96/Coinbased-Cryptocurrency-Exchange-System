@@ -26,7 +26,7 @@ deploy:
     environment:
         name: development
     before_script: 
-        - gcloud container clusters get-credentials coinbased-exchange-cluster
+        - gcloud container clusters get-credentials coinbased-exchange-cluster --zone us-east1-b --project proud-quasar-337917
     script:
         - kubectl apply -f coinbase-deployment.yaml
         - kubectl apply -f coinbase-service.yaml
