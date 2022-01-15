@@ -35,6 +35,3 @@ deploy:
         - echo done
     only: 
         - master
-
-
-
