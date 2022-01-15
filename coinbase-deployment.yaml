@@ -16,7 +16,7 @@ spec:
     metadata:
       labels:
         app: coinbase-app-server
-        version: "v1"
+        version: "v2"
     spec:
       containers:
         - name: coinbase-app

@@ -33,3 +33,33 @@ deploy:
         - echo done
     only: 
         - master
+
+deploy-blue:
+    image: google/cloud-sdk
+    stage: deploy
+    when: manual
+    environment:
+        name: production
+    script:
+        - kubectl apply -f app-deployment-blue.yaml
+        - kubectl apply -f app-service-blue.yaml
+        - kubectl get pods
+        - kubectl get svc
+        - echo done
+    only: 
+        - master
+
+deploy-green:
+    image: google/cloud-sdk
+    stage: deploy
+    when: manual
+    environment:
+        name: production
+    script:
+        - kubectl apply -f app-deployment-green.yaml
+        - kubectl apply -f app-service-green.yaml
+        - kubectl get pods
+        - kubectl get svc
+        - echo done
+    only: 
+        - master

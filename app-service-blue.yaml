@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-test-service
+  name: app-service-blue
   labels:
     name: coinbase-app-server
-    version: "v3"
+    version: "v1"
 spec:
   ports:
     - port: 3000
@@ -12,7 +12,5 @@ spec:
       protocol: TCP
   selector:
     app: coinbase-app-server
-    version: "v3"
-    type: webserver
-    color: green
+    version: "v1"
   type: LoadBalancer
