@@ -1,3 +1,7 @@
+variables:
+  USERNAME: senali20119025
+  PASSWORD: maneesha123
+
 stages:
   - build
   - deploy
@@ -8,10 +12,12 @@ docker-build:
     stage: build
     when: manual
     services:
-    - docker:dind       
+    - docker:dind  
+    before_script:
+    - docker login -u $USERNAME -p $PASSWORD     
     script:
-    - docker build -t "us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image" .
-    - docker push "us-east1-docker.pkg.dev/proud-quasar-337917/coinbased-docker-repo/coinbased-image:latest"
+    - docker build -t "senali20119025/coinbased-exchange-repo" .
+    - docker push "senali20119025/coinbased-exchange-repo"
 
 deploy:
     image: google/cloud-sdk
