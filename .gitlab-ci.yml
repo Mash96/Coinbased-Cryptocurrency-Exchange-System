@@ -76,8 +76,6 @@ switch-to-blue:
     when: manual
     environment:
         name: production
-        kubernetes:
-          namespace: $KUBE_NAMESPACE
     script:
         - kubectl apply -f app-service-blue.yaml
         - kubectl get pods
@@ -92,8 +90,7 @@ switch-to-green:
     needs: ["deploy-blue"] 
     when: manual
     environment:
-        kubernetes:
-          namespace: $KUBE_NAMESPACE
+        name: production
     script:
         - echo $KUBE_NAMESPACE
         - echo http://$KUBE_NAMESPACE-$CI_PROJECT_PATH_SLUG.$KUBE_INGRESS_BASE_DOMAIN
