@@ -40,7 +40,7 @@ deploy-blue:
     stage: blue/green deploy
     when: manual
     environment:
-        name: development
+        name: production
     script:
         - kubectl apply -f app-deployment-blue.yaml
         - kubectl apply -f app-service-blue.yaml
@@ -55,10 +55,38 @@ deploy-green:
     stage: blue/green deploy
     when: manual
     environment:
-        name: development
+        name: production
     script:
         - kubectl apply -f app-deployment-green.yaml
         - kubectl apply -f app-service-green.yaml
+        - kubectl get pods
+        - kubectl get svc
+        - echo done
+    only: 
+        - master
+
+switch-to-blue:
+    image: google/cloud-sdk
+    stage: switch
+    when: manual
+    environment:
+        name: production
+    script:
+        - kubectl apply -f app-service-blue.yaml
+        - kubectl get pods
+        - kubectl get svc
+        - echo done
+    only: 
+        - master
+
+switch-to-green:
+    image: google/cloud-sdk
+    stage: switch
+    when: manual
+    environment:
+        name: production
+    script:
+        - kubectl apply -f app-service-blue.yaml
         - kubectl get pods
         - kubectl get svc
         - echo done
