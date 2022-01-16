@@ -55,7 +55,7 @@ deploy-green:
     stage: blue/green deploy
     when: manual
     environment:
-        name: production
+        name: development
     script:
         - kubectl apply -f app-deployment-green.yaml
         - kubectl apply -f app-service-green.yaml
