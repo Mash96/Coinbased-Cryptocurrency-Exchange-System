@@ -7,7 +7,6 @@ spec:
   selector:
     matchLabels:
       app: coinbase-app-server
-      version: "v4"
   strategy:
     type: RollingUpdate
     rollingUpdate:

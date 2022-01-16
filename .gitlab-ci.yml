@@ -23,6 +23,7 @@ docker-build:
 deploy:
     image: google/cloud-sdk
     stage: deploy
+    need: ["docker-build"]
     when: manual
     environment:
         name: development
@@ -37,7 +38,7 @@ deploy:
 
 deploy-blue:
     image: google/cloud-sdk
-    stage: blue/green deploy
+    stage: blue/green deploy    
     when: manual
     environment:
         name: production
