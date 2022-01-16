@@ -23,10 +23,13 @@ docker-build:
 deploy:
     image: google/cloud-sdk
     stage: deploy
-    need: ["docker-build"]
     when: manual
     environment:
         name: development
+        url: http://development-$CI_PROJECT_PATH_SLUG.$KUBE_INGRESS_BASE_DOMAIN
+        kubernetes:
+          namespace: development
+
     script:
         - kubectl apply -f coinbase-deployment.yaml
         - kubectl apply -f coinbase-service.yaml
@@ -42,6 +45,8 @@ deploy-blue:
     when: manual
     environment:
         name: production
+        kubernetes:
+          namespace: production
     script:
         - kubectl apply -f app-deployment-blue.yaml
         - kubectl apply -f app-service-blue.yaml
@@ -57,7 +62,11 @@ deploy-green:
     when: manual
     environment:
         name: production
+        kubernetes:
+          namespace: production
     script:
+        - echo $KUBE_NAMESPACE
+        - echo http://development-$CI_PROJECT_PATH_SLUG.$KUBE_INGRESS_BASE_DOMAIN
         - kubectl apply -f app-deployment-green.yaml
         - kubectl apply -f app-service-green.yaml
         - kubectl get pods
@@ -72,6 +81,8 @@ switch-to-blue:
     when: manual
     environment:
         name: production
+        kubernetes:
+          namespace: production
     script:
         - kubectl apply -f app-service-blue.yaml
         - kubectl get pods
@@ -86,7 +97,11 @@ switch-to-green:
     when: manual
     environment:
         name: production
+        kubernetes:
+          namespace: production
     script:
+        - echo $KUBE_NAMESPACE
+        - echo http://development-$CI_PROJECT_PATH_SLUG.$KUBE_INGRESS_BASE_DOMAIN
         - kubectl apply -f app-service-blue.yaml
         - kubectl get pods
         - kubectl get svc
