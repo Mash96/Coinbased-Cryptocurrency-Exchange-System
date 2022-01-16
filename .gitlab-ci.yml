@@ -5,6 +5,7 @@ variables:
 stages:
   - build
   - deploy
+  - blue/green deploy
   - switch
 
 docker-build:
@@ -36,10 +37,10 @@ deploy:
 
 deploy-blue:
     image: google/cloud-sdk
-    stage: deploy
+    stage: blue/green deploy
     when: manual
     environment:
-        name: production
+        name: development
     script:
         - kubectl apply -f app-deployment-blue.yaml
         - kubectl apply -f app-service-blue.yaml
@@ -51,10 +52,10 @@ deploy-blue:
 
 deploy-green:
     image: google/cloud-sdk
-    stage: deploy
+    stage: blue/green deploy
     when: manual
     environment:
-        name: production
+        name: development
     script:
         - kubectl apply -f app-deployment-green.yaml
         - kubectl apply -f app-service-green.yaml

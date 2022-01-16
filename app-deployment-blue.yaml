@@ -1,12 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coinbase-app-server-blue
+  name: coinbase-app-server
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: coinbase-app-server
+      version: "v3"
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,7 +17,7 @@ spec:
     metadata:
       labels:
         app: coinbase-app-server
-        version: "v1"
+        version: "v3"
     spec:
       containers:
         - name: coinbase-app

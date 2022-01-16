@@ -4,7 +4,7 @@ metadata:
   name: app-service-blue
   labels:
     name: coinbase-app-server
-    version: "v1"
+    version: "v3"
 spec:
   ports:
     - port: 3000
@@ -12,5 +12,5 @@ spec:
       protocol: TCP
   selector:
     app: coinbase-app-server
-    version: "v1"
+    version: "v3"
   type: LoadBalancer
