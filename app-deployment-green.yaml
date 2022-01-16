@@ -7,6 +7,7 @@ spec:
   selector:
     matchLabels:
       app: coinbase-app-server
+      version: "v4"
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,7 +17,7 @@ spec:
     metadata:
       labels:
         app: coinbase-app-server
-        version: "v2"
+        version: "v4"
     spec:
       containers:
         - name: coinbase-app
