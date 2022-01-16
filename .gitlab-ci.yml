@@ -16,8 +16,8 @@ docker-build:
     before_script:
     - docker login -u $USERNAME -p $PASSWORD     
     script:
-    - docker build -t "senali20119025/coinbased-exchange-repo:v1" .
-    - docker push "senali20119025/coinbased-exchange-repo:v1"
+    - docker build -t "senali20119025/coinbased-exchange-repo:v2" .
+    - docker push "senali20119025/coinbased-exchange-repo:v2"
 
 deploy:
     image: google/cloud-sdk
