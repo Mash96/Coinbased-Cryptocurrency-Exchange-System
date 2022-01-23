@@ -21,6 +21,6 @@ spec:
       containers:
         - name: coinbase-app
           image: >-
-            senali20119025/coinbased-exchange-repo:v4
+            senali20119025/coinbased-exchange-repo:v5
           ports:
             - containerPort: 3000
